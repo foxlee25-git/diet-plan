@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeanDay - 每日减脂饮食安排</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <nav class="topbar">
+        <div class="brand">
+          <span class="brand-mark">L</span>
+          <div>
+            <p>LeanDay</p>
+            <span>每日减脂饮食安排</span>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <span class="today-label" id="todayLabel"></span>
+          <button class="ghost-btn" id="exportBtn" type="button">导出今日计划</button>
+        </div>
+      </nav>
+
+      <section class="hero-content">
+        <div class="hero-copy">
+          <p class="eyebrow">SMART CUT ROUTINE</p>
+          <h1>把减肥饮食安排得更轻松，也更容易坚持。</h1>
+          <p class="hero-text">
+            为上班族和学生党设计的每日减脂饮食 web 端，帮你在热量控制、三餐搭配、饮水节奏和轻运动之间找到稳定节奏。
+          </p>
+
+          <div class="mode-switch" role="tablist" aria-label="减脂模式">
+            <button class="mode-pill active" data-mode="balanced" type="button">均衡减脂</button>
+            <button class="mode-pill" data-mode="busy" type="button">忙碌快手</button>
+            <button class="mode-pill" data-mode="high-protein" type="button">高蛋白塑形</button>
+          </div>
+
+          <div class="hero-metrics">
+            <article>
+              <span>今日目标热量</span>
+              <strong id="calorieTarget">1450 kcal</strong>
+            </article>
+            <article>
+              <span>蛋白质建议</span>
+              <strong id="proteinTarget">95 g</strong>
+            </article>
+            <article>
+              <span>饮水目标</span>
+              <strong id="waterTarget">2200 ml</strong>
+            </article>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="glass-card">
+            <p class="panel-label">今日完成度</p>
+            <div class="progress-ring">
+              <div class="ring-center">
+                <strong id="completionRate">0%</strong>
+                <span>已完成</span>
+              </div>
+            </div>
+            <ul class="mini-list">
+              <li>早餐在起床后 1 小时内完成</li>
+              <li>晚餐控制在睡前 3 小时前</li>
+              <li>每餐优先吃蛋白质和蔬菜</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+    </header>
+
+    <main class="dashboard">
+      <section class="section-title">
+        <div>
+          <p>DAILY FLOW</p>
+          <h2>今天吃什么，一眼看清</h2>
+        </div>
+        <span class="day-chip">适合周一到周日循环使用</span>
+      </section>
+
+      <section class="timeline-grid" id="mealTimeline"></section>
+
+      <section class="insight-grid">
+        <article class="card accent-card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">INTAKE SPLIT</p>
+              <h3>热量分配建议</h3>
+            </div>
+            <span class="badge">自动调整</span>
+          </div>
+          <div class="split-bars" id="macroSplit"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">HYDRATION</p>
+              <h3>饮水打卡</h3>
+            </div>
+            <span class="badge badge-warm" id="waterStatus">0 / 8 杯</span>
+          </div>
+          <div class="water-grid" id="waterTracker"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">SMART SWAPS</p>
+              <h3>食材替换建议</h3>
+            </div>
+          </div>
+          <ul class="swap-list" id="swapList"></ul>
+        </article>
+      </section>
+
+      <section class="coaching-grid">
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">MOVEMENT</p>
+              <h3>今日轻运动建议</h3>
+            </div>
+          </div>
+          <div class="coach-block" id="movementPlan"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">REMINDERS</p>
+              <h3>避免减脂期常见失误</h3>
+            </div>
+          </div>
+          <ul class="tip-list">
+            <li>不要把水果当成无限量零食，控量更重要。</li>
+            <li>外卖优先选蒸、煮、烤，减少酱汁和炸物。</li>
+            <li>若下午容易暴食，可以把加餐提前到 15:30 左右。</li>
+            <li>一周允许 1 到 2 顿弹性餐，但当天其余餐次要更克制。</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
