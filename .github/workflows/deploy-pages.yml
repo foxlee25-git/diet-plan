@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 name: Deploy LeanDay to GitHub Pages
+=======
+name: Deploy static site to GitHub Pages
+>>>>>>> 47d6df6757e5c85cc59d59213a353173ae13d4db
 
 on:
   push:
@@ -12,25 +16,43 @@ permissions:
   id-token: write
 
 concurrency:
+<<<<<<< HEAD
   group: diet-plan-pages
+=======
+  group: pages
+>>>>>>> 47d6df6757e5c85cc59d59213a353173ae13d4db
   cancel-in-progress: true
 
 jobs:
   deploy:
+<<<<<<< HEAD
     runs-on: ubuntu-latest
 
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+=======
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+>>>>>>> 47d6df6757e5c85cc59d59213a353173ae13d4db
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+<<<<<<< HEAD
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
       - name: Upload static files
+=======
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+>>>>>>> 47d6df6757e5c85cc59d59213a353173ae13d4db
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
