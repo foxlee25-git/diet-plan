@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeanDay - 7天减脂饮食循环</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="floaty floaty-a"></div>
+      <div class="floaty floaty-b"></div>
+      <nav class="topbar">
+        <div class="brand">
+          <span class="brand-mark">🍓</span>
+          <div>
+            <p>LeanDay</p>
+            <span>可爱一点的每日减脂饮食安排</span>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <span class="today-label" id="todayLabel"></span>
+          <button class="ghost-btn" id="exportBtn" type="button">导出今日计划</button>
+        </div>
+      </nav>
+
+      <section class="hero-content">
+        <div class="hero-copy">
+          <p class="eyebrow">CUTE DAILY ROUTINE</p>
+          <h1>让减脂计划跟着一周节奏、心情和天气一起变。</h1>
+          <p class="hero-text">
+            这是一个 7 天循环的减脂饮食 web 端。它会结合当天星期、你的心情、生理状态和天气，给出更贴近真实生活的三餐安排与轻提醒。
+          </p>
+
+          <div class="mode-switch" role="tablist" aria-label="减脂模式">
+            <button class="mode-pill active" data-mode="balanced" type="button">均衡减脂</button>
+            <button class="mode-pill" data-mode="busy" type="button">忙碌快手</button>
+            <button class="mode-pill" data-mode="high-protein" type="button">高蛋白塑形</button>
+          </div>
+
+          <div class="hero-metrics">
+            <article>
+              <span>今日目标热量</span>
+              <strong id="calorieTarget">1450 kcal</strong>
+            </article>
+            <article>
+              <span>蛋白质建议</span>
+              <strong id="proteinTarget">95 g</strong>
+            </article>
+            <article>
+              <span>饮水目标</span>
+              <strong id="waterTarget">2200 ml</strong>
+            </article>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="glass-card">
+            <p class="panel-label">今日完成度</p>
+            <div class="progress-ring">
+              <div class="ring-center">
+                <strong id="completionRate">0%</strong>
+                <span>软软坚持中</span>
+              </div>
+            </div>
+            <ul class="mini-list">
+              <li>先吃蛋白质，再吃主食，饱腹感会更稳。</li>
+              <li>状态差时不要硬扛，优先做更温和但能完成的版本。</li>
+              <li>今天完成 70%，也比空想 100% 更厉害。</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+    </header>
+
+    <main class="dashboard">
+      <section class="planner-shell card">
+        <div class="section-title compact">
+          <div>
+            <p>WEEKLY LOOP</p>
+            <h2>7 天循环计划</h2>
+          </div>
+          <span class="day-chip" id="activeDayLabel">周一计划</span>
+        </div>
+
+        <div class="weekday-strip" id="weekdayTabs"></div>
+
+        <div class="control-grid">
+          <label class="control-card">
+            <span class="control-label">今天心情</span>
+            <select id="moodSelect">
+              <option value="calm">平静稳定</option>
+              <option value="tired">有点疲惫</option>
+              <option value="happy">心情不错</option>
+              <option value="stressed">压力有点大</option>
+            </select>
+          </label>
+
+          <label class="control-card">
+            <span class="control-label">生理状态</span>
+            <select id="cycleSelect">
+              <option value="normal">普通日常</option>
+              <option value="period">生理期中</option>
+              <option value="pre-period">经前几天</option>
+              <option value="post-period">经后恢复</option>
+            </select>
+          </label>
+
+          <label class="control-card">
+            <span class="control-label">今天天气</span>
+            <select id="weatherSelect">
+              <option value="sunny">晴朗</option>
+              <option value="rainy">下雨</option>
+              <option value="cold">偏冷</option>
+              <option value="hot">偏热</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="insight-grid top-insights">
+        <article class="card cute-card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">TODAY VIBE</p>
+              <h3>今日黄历感</h3>
+            </div>
+            <span class="badge badge-pink" id="fortuneBadge">小吉</span>
+          </div>
+          <div class="fortune-grid">
+            <div class="fortune-main">
+              <strong id="fortuneTitle">适合轻盈开局</strong>
+              <p id="fortuneSummary">今天更适合稳稳执行，不需要和自己较劲。</p>
+            </div>
+            <div class="fortune-tags">
+              <span class="fortune-tag fortune-good" id="fortuneGood">宜：清爽饮食</span>
+              <span class="fortune-tag fortune-soft" id="fortuneSoft">宜：温柔运动</span>
+              <span class="fortune-tag fortune-warn" id="fortuneAvoid">忌：情绪性乱吃</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card accent-card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">INTAKE SPLIT</p>
+              <h3>热量分配建议</h3>
+            </div>
+            <span class="badge">会随状态轻调</span>
+          </div>
+          <div class="split-bars" id="macroSplit"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">TINY COACH</p>
+              <h3>今日提醒</h3>
+            </div>
+          </div>
+          <div class="coach-note" id="conditionSummary"></div>
+        </article>
+      </section>
+
+      <section class="section-title">
+        <div>
+          <p>DAILY FLOW</p>
+          <h2>今天吃什么，一眼看清</h2>
+        </div>
+        <span class="day-chip">跟着星期自动轮换</span>
+      </section>
+
+      <section class="timeline-grid" id="mealTimeline"></section>
+
+      <section class="insight-grid">
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">HYDRATION</p>
+              <h3>饮水打卡</h3>
+            </div>
+            <span class="badge badge-warm" id="waterStatus">0 / 8 杯</span>
+          </div>
+          <div class="water-grid" id="waterTracker"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">SMART SWAPS</p>
+              <h3>今天更适合的替换</h3>
+            </div>
+          </div>
+          <ul class="swap-list" id="swapList"></ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">SNACK RESCUE</p>
+              <h3>嘴馋时先吃这个</h3>
+            </div>
+          </div>
+          <div class="snack-box" id="snackRescue"></div>
+        </article>
+      </section>
+
+      <section class="coaching-grid">
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">MOVEMENT</p>
+              <h3>今日轻运动建议</h3>
+            </div>
+          </div>
+          <div class="coach-block" id="movementPlan"></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <p class="card-kicker">REMINDERS</p>
+              <h3>避免减脂期常见失误</h3>
+            </div>
+          </div>
+          <ul class="tip-list">
+            <li>减脂不等于挨饿，先把稳定执行放在极端克制前面。</li>
+            <li>情绪起伏大时，先补水、散步 5 分钟，再决定要不要加餐。</li>
+            <li>生理期和雨天时，可以把运动改轻一点，但尽量不要完全断掉节奏。</li>
+            <li>一周循环的关键不是每天完美，而是下周还能继续跟上。</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
